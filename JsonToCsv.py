@@ -35,8 +35,8 @@ def listprint(lists, filepath):
                 for key in line.keys():
                     keys.append(key.encode('utf-8'))
                     lines = lines + '"' + key.encode('utf-8') + '",'
-                print(lines[0:len(lines) - 1])
-                fo.write(lines[0:len(lines) - 1]+'\n')
+                # print(lines[0:len(lines) - 1])
+                fo.write(lines[0:len(lines) - 1] + '\n')
             else:
                 lines = ''
                 for key in keys:
@@ -58,9 +58,9 @@ def listprint(lists, filepath):
                             except Exception as e:
                                 pass
                     lines = lines + '"' + value + '",'
-                print(lines[0:len(lines) - 1])
-                fo.write(lines[0:len(lines) - 1]+'\n')
-        print ''
+                # print(lines[0:len(lines) - 1])
+                fo.write(lines[0:len(lines) - 1] + '\n')
+        print filepath + 'finish'
     fo.close()
 
 

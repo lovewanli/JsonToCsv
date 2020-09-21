@@ -17,12 +17,12 @@ def fileRead(filepath):
         key = masterline.encode('utf-8')
         typestr = type(dict1[key])
         if typestr == list:
-            listprint(dict1[key])
+            listprint(dict1[key],)
         elif typestr == dict:
             for masterline1 in dict1[key].keys():
                 key1 = masterline1.encode('utf-8')
                 if type(dict1[key][key1]) == list:
-                    listprint(dict1[key][key1])
+                    listprint(dict1[key][key1],filepath)
 
 
 def listprint(list):
@@ -40,6 +40,8 @@ def listprint(list):
                 value = 'NULL'
                 if line.has_key(key):
                     value = str(line[key])
+                    if value.find('"'):
+                        value.replace('"', '""')
                     valuelength = len(value)
                 if value.isdigit():
                     if valuelength == 10:

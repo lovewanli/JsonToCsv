@@ -4,4 +4,4 @@ convert Json to Csv format
 
 python JsonToCsv.py Jsonfilepath
 
-while print all list object with key:value format.
+while print all list in two level object with key:value format.

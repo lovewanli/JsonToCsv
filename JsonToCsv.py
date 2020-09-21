@@ -65,5 +65,9 @@ def listprint(lists, filepath):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) == 2:
-        fileread(sys.argv[1])
+    if len(sys.argv) >= 2:
+        i = 0
+        for name in sys.argv:
+            if i != 0:
+                fileread(sys.argv[i])
+            i = i + 1

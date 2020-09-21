@@ -17,7 +17,7 @@ def fileread(filepath):
         key = masterline.encode('utf-8')
         typestr = type(dict1[key])
         if typestr == list:
-            listprint(dict1[key], )
+            listprint(dict1[key], filepath)
         elif typestr == dict:
             for masterline1 in dict1[key].keys():
                 key1 = masterline1.encode('utf-8')
@@ -60,7 +60,7 @@ def listprint(lists, filepath):
                     lines = lines + '"' + value + '",'
                 # print(lines[0:len(lines) - 1])
                 fo.write(lines[0:len(lines) - 1] + '\n')
-        print filepath + 'finish'
+        print filepath + ' finish'
     fo.close()
 
 

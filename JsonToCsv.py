@@ -116,14 +116,10 @@ def listprint(lists, filepath):
                             value = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(int(value) / 1000))
                         except Exception as e:
                             pass
-                if bodystat.has_key(key):
-                    if bodystat[key].has_key(value):
-                        lines = lines + '"' + bodystat[key][value] + '",'
-                    else:
-                        lines = lines + '"' + value + '",'
+                if bodystat.has_key(key) and bodystat[key].has_key(value):
+                    lines = lines + '"' + bodystat[key][value] + '",'
                 else:
                     lines = lines + '"' + value + '",'
-            # print(lines[0:len(lines) - 1])
             fo.write(lines[0:len(lines) - 1] + '\n')
         print filepath + ' finish'
     fo.close()

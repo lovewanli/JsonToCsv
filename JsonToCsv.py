@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # _*_coding:utf-8 _*_
+import datetime
 import json
 import sys
 import time
@@ -92,7 +93,7 @@ def listprint(lists, filepath):
         else:
             lines = lines + '"' + key.encode('utf-8') + '",'
 
-    with open(filepath + ".csv", "w") as fo:
+    with open(filepath.split('.')[0] + " " + datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') + ".csv", "w") as fo:
         fo.write('\xEF\xBB\xBF')
         fo.write(lines[0:len(lines) - 1] + '\n')
         for line in lists:

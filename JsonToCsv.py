@@ -55,24 +55,24 @@ title = {
 }
 
 
+def checkjson(dict1, filepath):
+    for masterline in dict1.keys():
+        key = masterline.encode('utf-8')
+        # print key
+        typestr = type(dict1[key])
+        if typestr == list:
+            listprint(dict1[key], filepath)
+        elif typestr == dict:
+            checkjson(dict1[key], filepath)
+
+
 def fileread(filepath):
     result = ""
     for line in open(filepath):
         result = result + line
     try:
         dict1 = json.loads(result)
-        for masterline in dict1.keys():
-            key = masterline.encode('utf-8')
-            # print key
-            typestr = type(dict1[key])
-            if typestr == list:
-                listprint(dict1[key], filepath)
-            elif typestr == dict:
-                for masterline1 in dict1[key].keys():
-                    key1 = masterline1.encode('utf-8')
-                    # print key1
-                    if type(dict1[key][key1]) == list:
-                        listprint(dict1[key][key1], filepath)
+        checkjson(dict1, filepath)
     except Exception as e:
         print e.message
 

@@ -7,6 +7,53 @@ import time
 reload(sys)
 sys.setdefaultencoding('utf8')
 
+bodystat = {
+    "reqStatus": {
+        "1": "需求提出",
+        "21": "部门审核",
+        "22": "分公司办结",
+        "31": "需求受理",
+        "41": "架构初评",
+        "51": "委员会初审",
+        "52": "立项中",
+        "61": "需求分析",
+        "71": "架构设计",
+        "81": "需求排期",
+        "91": "解决方案阅知",
+        "101": "需求评审",
+        "111": "业务确认",
+        "121": "部门确认",
+        "131": "委员会终审",
+        "141": "需求实施",
+        "151": "需求完成",
+        "161": "需求取消",
+        "171": "需求暂停",
+        "181": "审批中"},
+    "reqType": {
+        "1": "功能类",
+        "2": "配置类",
+        "3": "数据提取",
+        "5": "新项目类",
+        "7": "技术优化类"
+    }
+}
+title = {
+    "systemName": "系统名称",
+    "systemCode": "系统代码",
+    "reqName": "需求名称",
+    "reqCode": "需求代码",
+    "submitterName": "提交人",
+    "reqType": "需求类型",
+    "reqStatus": "需求状态",
+    "createDate": "创建时间",
+    "planRealeaseTime": "计划上线时间",
+    "orderStatusStore": "订单状态存储",
+    "orderStatus": "订单状态",
+    "orderCode": "订单代码",
+    "actId": "不知道什么意思",
+    "dealMan": "当前处理人"
+}
+
 
 def fileread(filepath):
     result = ""
@@ -29,6 +76,7 @@ def fileread(filepath):
     except Exception as e:
         print e.message
 
+
 def listprint(lists, filepath):
     keys1 = set()
     for line in lists:
@@ -39,7 +87,10 @@ def listprint(lists, filepath):
     lines = ""
     for key in keys1:
         keys.append(key)
-        lines = lines + '"' + key.encode('utf-8') + '",'
+        if title.has_key(key):
+            lines = lines + '"' + title[key.encode('utf-8')] + '",'
+        else:
+            lines = lines + '"' + key.encode('utf-8') + '",'
 
     with open(filepath + ".csv", "w") as fo:
         fo.write('\xEF\xBB\xBF')
@@ -64,7 +115,13 @@ def listprint(lists, filepath):
                             value = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(int(value) / 1000))
                         except Exception as e:
                             pass
-                lines = lines + '"' + value + '",'
+                if bodystat.has_key(key):
+                    if bodystat[key].has_key(value):
+                        lines = lines + '"' + bodystat[key][value] + '",'
+                    else:
+                        lines = lines + '"' + value + '",'
+                else:
+                    lines = lines + '"' + value + '",'
             # print(lines[0:len(lines) - 1])
             fo.write(lines[0:len(lines) - 1] + '\n')
         print filepath + ' finish'

@@ -150,3 +150,4 @@ if __name__ == '__main__':
                     fo2.readline()
                     control = 1
                 fo1.writelines(fo2.readlines())
+    print (filename+" finish")

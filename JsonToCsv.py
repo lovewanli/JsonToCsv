@@ -7,7 +7,7 @@ import time
 
 reload(sys)
 sys.setdefaultencoding('utf8')
-
+plusfilename = []
 bodystat = {
     "reqStatus": {
         "1": "需求提出",
@@ -93,7 +93,9 @@ def listprint(lists, filepath):
         else:
             lines = lines + '"' + key.encode('utf-8') + '",'
 
-    with open(filepath.split('.')[0] + " " + datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') + ".csv", "w") as fo:
+    filename = filepath.split('.')[0] + " " + datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') + ".csv"
+    plusfilename.append(filename)
+    with open(filename, "w") as fo:
         fo.write('\xEF\xBB\xBF')
         fo.write(lines[0:len(lines) - 1] + '\n')
         for line in lists:
@@ -133,3 +135,18 @@ if __name__ == '__main__':
                 print sys.argv[i]
                 fileread(sys.argv[i])
             i = i + 1
+
+    filename = ''
+    type = 'w'
+    for key in plusfilename:
+        if filename == '':
+            filename = key.split('.')[0] + " " + datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') + ".csv"
+        else:
+            type = 'a'
+        control = 0
+        with open(filename, type) as fo1:
+            with open(key, 'r') as fo2:
+                if control == 0 and type == 'a':
+                    fo2.readline()
+                    control = 1
+                fo1.writelines(fo2.readlines())

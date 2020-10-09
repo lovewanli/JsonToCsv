@@ -8,6 +8,7 @@ import time
 reload(sys)
 sys.setdefaultencoding('utf8')
 plusfilename = []
+#示例
 bodystat = {
     "reqStatus": {
         "1": "需求提出",
@@ -38,6 +39,7 @@ bodystat = {
         "7": "技术优化类"
     }
 }
+#示例
 title = {
     "systemName": "系统名称",
     "systemCode": "系统代码",

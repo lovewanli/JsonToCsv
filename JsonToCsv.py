@@ -98,6 +98,7 @@ def listprint(lists, filepath):
     filename = filepath.split('.')[0] + " " + datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') + ".csv"
     plusfilename.append(filename)
     with open(filename, "w") as fo:
+        #utf-8 head
         fo.write('\xEF\xBB\xBF')
         fo.write(lines[0:len(lines) - 1] + '\n')
         for line in lists:

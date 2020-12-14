@@ -26,6 +26,8 @@ TO:
 b	e
 
 c	NULL
+
 d	NULL
+
 NULL	c
 
